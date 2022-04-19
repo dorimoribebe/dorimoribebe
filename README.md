@@ -1,5 +1,5 @@
 # 사이트
-https://mood-log.netlify.app
+https://mood-ootd.netlify.app/
 
 # 실행 방법
 `git clone https://github.com/dorimoribebe/motd`   
