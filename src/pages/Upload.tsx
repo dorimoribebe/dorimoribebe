@@ -31,7 +31,7 @@ export default function Upload() {
       url: url,
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
       data: formData,
     };
@@ -43,7 +43,7 @@ export default function Upload() {
     } catch (e) {
       console.log(e);
     }
-    
+
     // fetch(url, {
     //   method: "POST",
     //   headers: {
