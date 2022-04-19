@@ -6,6 +6,7 @@ export default function Upload() {
   const now = Date.now();
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
+
   // const [now, setNow] = useState("");
 
   // const toBase64 = (file: any) =>
@@ -65,7 +66,7 @@ export default function Upload() {
         <br />
         전신사진일 수록 정확도가 높아진답니다.
       </h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input id="file" type="file" name="file" onChange={onLoadFile} />
         <button type="submit" className="button">
           ai하두알룩에게 사진 보내기🤖
