@@ -1,41 +1,54 @@
 import { useState } from "react";
 import axios from "axios";
+import imageCompression from "browser-image-compression";
 
 export default function Upload() {
   const url: string = "http://54.67.69.32:5000/";
   const now = Date.now();
   const [file, setFile] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [fileList, setFileList] = useState("");
   // const [now, setNow] = useState("");
 
-  // const toBase64 = (file: any) =>
-  //   new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => resolve(reader.result);
-  //     reader.onerror = (error) => reject(error);
-  //   });
-
   const onLoadFile = (e: any) => {
-    const file = e.target.files;
-    const fileName = e.target.files[0].name;
+    const file = e.target.files[0];
+    const fileList = e.target.files;
     setFile(file);
-    setFileName(fileName);
+    setFile(fileList);
     console.log(file);
-    // toBase64( file);
-    // console.log("tobase64(file)",file);
+    console.log(fileList);
+  };
+  const onSubmit = async () => {
+    actionImgCompress(fileList);
+  };
+
+  const actionImgCompress = async (fileSrc: any) => {
+    console.log("압축 시작");
+
+    const options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+    try {
+      // 압축 결과
+      const compressedFile = await imageCompression(fileSrc, options);
+
+      // const reader = new FileReader();
+      // reader.readAsDataURL(compressedFile);
+      // reader.onloadend = () => {
+      //   const base64data = reader.result;
+      //   imageHandling(base64data);
+      // };
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    // const data = {
-    //   id: now,
-    // };
-    // formData.append("fileName", fileName);
-    // formData.append("data", JSON.stringify(data));
-
     const formData = new FormData();
+
     formData.append("images", file);
 
     const options = {

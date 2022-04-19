@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Output from "./pages/Output";
 import Upload from "./pages/Upload";
 import EmptyPage from "./pages/EmptyPage";
+import uploadTest from "./pages/UploadTest";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/upload" component={Upload} />
             <Route path="/output" component={Output} />
+            <Route path="/uploadTest" component={uploadTest} />
             <Route component={EmptyPage} />
           </Switch>
         </div>
