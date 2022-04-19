@@ -6,9 +6,11 @@ export default function Upload() {
   const now = Date.now();
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
+  // const [now, setNow] = useState("");
 
   const onLoadFile = (e: any) => {
-    const file = e.target.files[0];
+    const file = e.target.files;
+    console.log(file);
     const fileName = e.target.files[0].name;
     setFile(file);
     setFileName(fileName);
@@ -19,13 +21,13 @@ export default function Upload() {
     e.preventDefault();
 
     const formData = new FormData();
-    const data = {
-      id: now,
-    };
+    // const data = {
+    //   id: now,
+    // };
 
     formData.append("images", file);
-    formData.append("fileName", fileName);
-    formData.append("data", JSON.stringify(data));
+    // formData.append("fileName", fileName);
+    // formData.append("data", JSON.stringify(data));
 
     const options = {
       url: url,
@@ -33,7 +35,7 @@ export default function Upload() {
       header: {
         "Content-Type": "application/json",
       },
-      data: formData,
+     data: formData,
     };
 
     try {
@@ -62,7 +64,7 @@ export default function Upload() {
         <br />
         전신사진일 수록 정확도가 높아진답니다.
       </h3>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit}>
         <input id="file" type="file" name="file" onChange={onLoadFile} />
         <button type="submit" className="button">
           ai하두알룩에게 사진 보내기🤖
