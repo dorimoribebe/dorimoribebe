@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Upload = ({ match }: any) => {
+  //http://54.67.69.32:443/
+  //http://54.67.69.32:80/
+  //http://8f83-121-66-139-243.ngrok.io
   const url: string = "http://8f83-121-66-139-243.ngrok.io";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
@@ -44,7 +47,13 @@ const Upload = ({ match }: any) => {
       <form onSubmit={handleSubmit} encType="multipart/formdata">
         <input id="file" type="file" name="file" onChange={onLoadFile} />
         <button type="submit" className="button">
-          <Link to={`/output/${data.id}`} className="text-link">
+          <Link
+            to={{
+              pathname: `/output/${data.id}`,
+              state: {},
+            }}
+            className="text-link"
+          >
             ai하두알룩에게 사진 보내기🤖
           </Link>
         </button>

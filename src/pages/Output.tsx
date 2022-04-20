@@ -5,24 +5,24 @@ import axios from "axios";
 
 export default function Output(props :any) {
   const url: string = "http://8f83-121-66-139-243.ngrok.io";
-  const data = useFetch(url);
+  //const data = useFetch(url);
 
-  async function getData() {
-    try {
-      const res = await axios.get(url, {
-        params: {
-          id: "",
-        },
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  // async function getData() {
+  //   try {
+  //     const res = await axios.get(url, {
+  //       params: {
+  //         id: props.match,
+  //       },
+  //     });
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // }
 
   return (
     <div className="output">
       <h1>결과</h1>
-      
+
       {/*data.map((data) => (
         <div key={data.id}>
           <img className="output-img" src={data.image} />
