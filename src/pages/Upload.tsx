@@ -1,15 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default function Upload(props: number) {
-  const url: string = "http://54.67.69.32:80/";
+const Upload = ({ match }: any) => {
+  const url: string = "http://8f83-121-66-139-243.ngrok.io";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
-  let [id, setId] = useState(1);
-
-  const handleId = () => {
-    setId(id++);
-  };
+  const date = Date.now();
 
   const onLoadFile = (e: any) => {
     const file = e.target.files[0];
@@ -18,14 +15,12 @@ export default function Upload(props: number) {
     setFileName(fileName);
     console.log(`file: ${file}, fileName: ${fileName}`);
   };
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = new FormData();
     const data = {
-      id: id,
+      id: date,
     };
-    console.log(data);
     formData.append("images", file);
     formData.append("fileName", fileName);
     formData.append("data", JSON.stringify(data));
@@ -49,10 +44,14 @@ export default function Upload(props: number) {
       </h3>
       <form onSubmit={handleSubmit} encType="multipart/formdata">
         <input id="file" type="file" name="file" onChange={onLoadFile} />
-        <button type="submit" className="button" onClick={handleId}>
-          ai하두알룩에게 사진 보내기🤖
+        <button type="submit" className="button">
+          <Link to={`/output/${date}`} className="text-link">
+            ai하두알룩에게 사진 보내기🤖
+          </Link>
         </button>
       </form>
     </div>
   );
-}
+};
+
+export default Upload;
