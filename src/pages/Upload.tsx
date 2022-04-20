@@ -1,11 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-import { Router } from "react-router-dom";
 
-export default function Upload() {
+export default function Upload(props: number) {
   const url: string = "http://54.67.69.32:80/";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
+  let [id, setId] = useState(1);
+
+  const handleId = () => {
+    setId(id++);
+  };
 
   const onLoadFile = (e: any) => {
     const file = e.target.files[0];
@@ -17,10 +21,9 @@ export default function Upload() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const now = Date.now();
     const formData = new FormData();
     const data = {
-      id: now,
+      id: id,
     };
     console.log(data);
     formData.append("images", file);
@@ -34,7 +37,7 @@ export default function Upload() {
       console.log(e);
     }
   };
-  
+
   return (
     <div className="upload">
       <h1>사진 업로드</h1>
@@ -46,7 +49,7 @@ export default function Upload() {
       </h3>
       <form onSubmit={handleSubmit} encType="multipart/formdata">
         <input id="file" type="file" name="file" onChange={onLoadFile} />
-        <button type="submit" className="button">
+        <button type="submit" className="button" onClick={handleId}>
           ai하두알룩에게 사진 보내기🤖
         </button>
       </form>
