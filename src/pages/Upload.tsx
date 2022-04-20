@@ -7,7 +7,9 @@ const Upload = ({ match }: any) => {
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
   const date = Date.now();
-
+  const data = {
+    id: date,
+  };
   const onLoadFile = (e: any) => {
     const file = e.target.files[0];
     const fileName = e.target.files[0].name;
@@ -18,9 +20,6 @@ const Upload = ({ match }: any) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    const data = {
-      id: date,
-    };
     formData.append("images", file);
     formData.append("fileName", fileName);
     formData.append("data", JSON.stringify(data));
@@ -45,7 +44,7 @@ const Upload = ({ match }: any) => {
       <form onSubmit={handleSubmit} encType="multipart/formdata">
         <input id="file" type="file" name="file" onChange={onLoadFile} />
         <button type="submit" className="button">
-          <Link to={`/output/${date}`} className="text-link">
+          <Link to={`/output/${data.id}`} className="text-link">
             ai하두알룩에게 사진 보내기🤖
           </Link>
         </button>
