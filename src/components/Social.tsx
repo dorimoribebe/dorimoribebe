@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import Facebook from "./Facebook";
-import KakaoShareButton from "./KakaoShareButton";
-import Twitter from "./Twitter";
-import LinkShare from "./LinkShare";
+import { useEffect } from "react";
+import KakaoShareButton from "../components/KakaoShareButton";
+import LinkShare from "../components/LinkShare";
 
 export default function Social() {
+  const url: string = window.location.href;
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
@@ -17,24 +17,37 @@ export default function Social() {
     };
   }, []);
 
+  const onClickFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+  };
+
+  const onClickTwitter = () => {
+    window.open(
+      `https://www.twitter.com/intent/tweet?&url=${url}`
+    );
+  };
+
   return (
     <div className="link-icon">
       {/*<a href="#">
         <img
-          className="link-icon.instagram"
           src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
           alt="instagram"
         />
   </a>*/}
-      <div className="link-icon.twitter">
-        <Twitter />
-      </div>
-      <div className="link-icon.facebook">
-        <Facebook />
-      </div>
+
+      <button onClick={onClickTwitter} className="share-btn">
+        <img src="images/twitter.png" alt="twitter" />
+      </button>
+
+      <button onClick={onClickFacebook} className="share-btn">
+        <img src="images/facebook.png" alt="facebook" />
+      </button>
+
       <div className="link-icon.kakao">
         <KakaoShareButton />
       </div>
+
       <div className="link-icon.link">
         <LinkShare />
       </div>

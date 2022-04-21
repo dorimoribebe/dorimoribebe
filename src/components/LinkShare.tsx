@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
+
 export default class Share extends Component {
   state = {
-    copyUrl: "https://mood-log.netlify.app/",
+    copyUrl: window.location.href,
     copied: false,
   };
   closeCopied = () => {
