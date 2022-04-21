@@ -15,11 +15,11 @@ export default function Home() {
         src="https://cdn-icons-png.flaticon.com/512/6604/6604268.png"
         alt="ai HADOALOOK"
       />
-      <div className="text">현재 -명이 참여했어요</div>
+      <div>현재 -명이 참여했어요</div>
       <Social />
 
-      <div className="button">
-        <Link to="/upload" className="text-link">
+      <div>
+        <Link to="/upload" className="text-link button">
           분석 요청하기🤖
         </Link>
       </div>

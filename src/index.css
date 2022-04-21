@@ -14,20 +14,21 @@
   font-family: "Cafe24Ohsquareair";
 }
 
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: stretch;
-}
-
-.header {
-  font-size: 30px;
-  font-weight: bold;
-  text-align: left;
-  margin: 20px;
+  background: linear-gradient(-45deg, #f8c2b2, #f9b1cd, #88d5f1, #abf9e7);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
 
 .text-link {
@@ -37,13 +38,25 @@ body {
 
 .card {
   margin: 20px;
-  padding: 10px;
+  padding: 30px;
   border-radius: 15px;
   background: #ffffff;
-  box-shadow: 9px 9px 18px #c4c4c4, -9px -9px 18px #ffffff;
-  max-width: 1000px;
+  box-shadow: 9px 9px 8px #eeecec;
+  max-width: 960px;
   min-width: 280px;
+  min-height: 700px;
   flex-wrap: wrap;
+  font-size: 1.3rem;
+  line-height: 160%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
 }
 
 .home > .ai-img {
@@ -52,6 +65,7 @@ body {
   transform-origin: 50% 50%;
   padding: 15px;
 }
+
 .link-icon {
   position: relative;
   display: flex;
@@ -61,7 +75,7 @@ body {
   font-weight: 500;
   color: #333;
   margin-right: 10px;
-  padding-top: 50px;
+  padding: 20px 20px;
 }
 
 .link-icon.twitter {
@@ -81,6 +95,11 @@ body {
   height: 30px;
 }
 
+.preview{
+  max-width: 400px;
+  max-height: 400px;
+}
+
 .share-btn {
   background-color: inherit;
   border: 0;
@@ -97,9 +116,6 @@ body {
   height: 1%;
   margin: 5% auto;
   border: none;
-}
-
-.output {
 }
 
 .output-img {
@@ -132,5 +148,17 @@ body {
 @keyframes rotate_image {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

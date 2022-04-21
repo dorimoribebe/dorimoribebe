@@ -1,28 +1,21 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
 import Social from "../components/Social";
-import axios from "axios";
 
-export default function Output(props :any) {
-  const url: string = "http://8f83-121-66-139-243.ngrok.io";
-  //const data = useFetch(url);
-
-  // async function getData() {
-  //   try {
-  //     const res = await axios.get(url, {
-  //       params: {
-  //         id: props.match,
-  //       },
-  //     });
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }
+export default function Output(props: any) {
+  //const url: string = "http://54.67.69.32:80/";
+  //console.log(props.location.state);
+  const aiData = props.location.state.data;
+  console.log(aiData);
 
   return (
     <div className="output">
       <h1>결과</h1>
-
+      {aiData.products.map((aiData: any) => (
+        <div key={props.location.state.id}>
+          <p>{aiData.data[1]}</p>
+        </div>
+      ))}
       {/*data.map((data) => (
         <div key={data.id}>
           <img className="output-img" src={data.image} />
