@@ -22,9 +22,7 @@ export default function Social() {
   };
 
   const onClickTwitter = () => {
-    window.open(
-      `https://www.twitter.com/intent/tweet?&url=${url}`
-    );
+    window.open(`https://www.twitter.com/intent/tweet?&url=${url}`);
   };
 
   return (
@@ -43,14 +41,8 @@ export default function Social() {
       <button onClick={onClickFacebook} className="share-btn">
         <img src="images/facebook.png" alt="facebook" />
       </button>
-
-      <div className="link-icon.kakao">
-        <KakaoShareButton />
-      </div>
-
-      <div className="link-icon.link">
-        <LinkShare />
-      </div>
+      <KakaoShareButton />
+      <LinkShare />
     </div>
   );
 }

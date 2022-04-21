@@ -51,11 +51,10 @@ const url:string = window.location.href;
     }
   };
   return (
-    <div className="kakao-share-button">
+    
       <button id="kakao-link-btn" className="share-btn">
         <img src="images/kakao-talk.png" alt="kakao-share-icon" />
       </button>
-    </div>
   );
 };
 export default KakaoShareButton;
