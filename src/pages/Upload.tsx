@@ -8,6 +8,7 @@ const Upload = ({ match }: any) => {
   //http://54.67.69.32:443/ -> 아마 https
   //http://54.67.69.32:80/ -> http
   //http://8f83-121-66-139-243.ngrok.io -> 서버님 노트북 로컬
+  //http://43bb-121-66-139-243.ngrok.io 
   const url: string = "http://54.67.69.32:80/";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
