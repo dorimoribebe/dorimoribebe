@@ -15,7 +15,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/upload" component={Upload} />
             <Route path="/output/:id" component={Output} />
-            <Route component={EmptyPage} />
+            <Route path="*" component={EmptyPage} />
           </Switch>
         </div>
       </div>

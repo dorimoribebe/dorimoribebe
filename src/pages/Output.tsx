@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import Social from "../components/Social";
+import axios from "axios";
+import { useState } from "react";
+import EmptyPage from "./EmptyPage";
 
 export default function Output(props: any) {
   //const url: string = "http://54.67.69.32:80/";
@@ -8,14 +10,40 @@ export default function Output(props: any) {
   const aiData = props.location.state.data;
   console.log(aiData);
 
+  const [myImage, setMyImage] = useState("");
+
+  const imgurl: string = "http://93fb-121-66-139-243.ngrok.io";
+   try {
+    axios
+      .get<Blob>(imgurl, { responseType: "blob" }) //
+      .then((res) => {
+        const myFile = new File([res.data], "imageName");
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const previewImage = String(ev.target?.result);
+          setMyImage(previewImage); // myImage라는 state에 저장했음
+        };
+        reader.readAsDataURL(myFile);
+      });
+  } catch (e) {
+    console.log(e);
+    return (
+      <BrowserRouter>
+        <Route path="/error" component={EmptyPage}></Route>
+      </BrowserRouter>
+    );
+  }
+
   return (
     <div className="output">
-      <h1>결과</h1>
-      {aiData.products.map((aiData: any) => (
-        <div key={props.location.state.id}>
-          <p>{aiData.data[1]}</p>
-        </div>
-      ))}
+      <h1>오늘 당신의 무드는!</h1>
+      <img className="preview" src={`${myImage}`} />
+      {aiData &&
+        aiData.products.map((aiData: any) => (
+          <div key={props.location.state.id}>
+            <p>{aiData.data[0]["무드1-클래식"]}</p>
+          </div>
+        ))}
       {/*data.map((data) => (
         <div key={data.id}>
           <img className="output-img" src={data.image} />
