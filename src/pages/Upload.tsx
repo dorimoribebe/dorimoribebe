@@ -1,19 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import { Link } from "react-router-dom";
+import Social from "../components/Social";
 
 const Upload = ({ match }: any) => {
-  //http://54.67.69.32:443/ -> 아마 https
+  //https://54.67.69.32:443/ -> 아마 https
   //http://54.67.69.32:80/ -> http
-  const url: string = "http://b10e-121-66-139-243.ngrok.io";
+  //http://c0aa-121-66-139-243.ngrok.io
+  const url: string = "https://54.67.69.32:443/";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
-  const [aiData, setAiData] = useState([""]);
+  let [aiData, setAiData] = useState([[""],[""]]);
+
   const [isShown, setIsShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
   const [resData, setResData] = useState(false);
-
+  //const aiData: string[] = [];
   const date = Date.now();
   const data = {
     id: date,
@@ -45,9 +49,16 @@ const Upload = ({ match }: any) => {
           setLoading(false);
           console.log("res", res);
           setIsShow(true);
-          aiData.push(res.data[0]["무드1-클래식"]);
+          aiData[0][0] = res.data.id;
+          aiData[1][0] = res.data.mood["무드1-클래식"];
+          aiData[1].push(res.data.mood["무드2-페미닌"]); //"무드2-페미닌"
+          aiData[1].push(res.data.mood["무드3-레트로"]); //"무드3-레트로"
+          aiData[1].push(res.data.mood["무드4-히피"]); //"무드4-히피"
+          aiData[1].push(res.data.mood["무드5-스포티"]); //"무드5-스포티"
+          aiData[1].push(res.data.mood["무드6-섹시"]); //"무드6-섹시"
+          aiData[1].push(res.data.mood["무드7-톰보이"]); //"무드7-톰보이"
           console.log("aiData", aiData);
-
+          setAiData(aiData);
           setResData(true);
         })
         .catch(function (error) {
@@ -105,11 +116,28 @@ const Upload = ({ match }: any) => {
   if (resData) {
     return (
       <div>
-        <h1>무드 분석 결과🎈</h1>
+        <h1>🤖</h1>
+        <h1>무드 분석 결과</h1>
         {imageSrc && (
           <img className="preview" src={imageSrc} alt="preview-img" />
         )}
-        {aiData[1][0]}
+        {/* {<p>
+          {aiData[1][0]},{aiData[1][1]}
+        </p>} */}
+        {aiData.map((aiData) => (
+          <p key={aiData[0][0]}>
+            {aiData[1][1]}
+            {aiData[1][0]}%
+          </p>
+        ))}
+
+        <p></p>
+        <Social />
+        <div>
+          <Link to="/" className="button text-link">
+            다시 테스트하기🎈
+          </Link>
+        </div>
       </div>
     );
   }
@@ -117,15 +145,17 @@ const Upload = ({ match }: any) => {
   return (
     <>
       <div className="upload" hidden={isShown}>
-        <h1>사진 업로드📸</h1>
+        <h1>📸</h1>
+        <h1>사진 업로드</h1>
         <div className="contents">
           <h4>
-            데일리룩 사진을 첨부하면,
+            <br />
+            데일리룩 사진을 첨부해봐요!
             <br />
             ai 하두알룩이 <br />
-            오늘의 무드를 분석해줘요!
+            오늘의 무드를 분석해드려요.
             <br />
-            전신사진 업로드 시 정확도가 높아진답니다.
+            전신사진 업로드 시 정확도가 높아진답니다😎
           </h4>
 
           <form onSubmit={handleSubmit} encType="multipart/formdata">
@@ -143,7 +173,7 @@ const Upload = ({ match }: any) => {
             </div>
             <div>
               <button type="submit" className="button">
-                ai하두알룩에게 사진 보내기🤖
+                ai하두알룩에게 사진 보내기🚀
               </button>
             </div>
           </form>
