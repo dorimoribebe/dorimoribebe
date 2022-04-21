@@ -12,32 +12,33 @@ export default function Output(props: any) {
 
   const [myImage, setMyImage] = useState("");
 
-  const imgurl: string = "http://93fb-121-66-139-243.ngrok.io";
-   try {
-    axios
-      .get<Blob>(imgurl, { responseType: "blob" }) //
-      .then((res) => {
-        const myFile = new File([res.data], "imageName");
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const previewImage = String(ev.target?.result);
-          setMyImage(previewImage); // myImage라는 state에 저장했음
-        };
-        reader.readAsDataURL(myFile);
-      });
-  } catch (e) {
-    console.log(e);
-    return (
-      <BrowserRouter>
-        <Route path="/error" component={EmptyPage}></Route>
-      </BrowserRouter>
-    );
-  }
+//   const imgurl: string = "http://93fb-121-66-139-243.ngrok.io";
+//    try {
+//     axios
+//       .get<Blob>(imgurl, { responseType: "blob" }) //
+//       .then((res) => {
+//         const myFile = new File([res.data], "imageName");
+//         const reader = new FileReader();
+//         reader.onload = (ev) => {
+//           const previewImage = String(ev.target?.result);
+//           setMyImage(previewImage); // myImage라는 state에 저장했음
+//         };
+//         reader.readAsDataURL(myFile);
+//       }).catch(function(e){
+//         console.log(e);
+//         alert(`에러가 발생했어요😥 페이지 새로고침 후 다시 이용해주세요.
+// 문제가 지속될 시 관리자에게 문의 바랍니다🙏`);
+//       })
+//   } catch (e) {
+//     console.log(e);
+//     alert(`에러가 발생했어요😥 페이지 새로고침 후 다시 이용해주세요.
+// 문제가 지속될 시 관리자에게 문의 바랍니다🙏`);
+//   }
 
   return (
     <div className="output">
       <h1>오늘 당신의 무드는!</h1>
-      <img className="preview" src={`${myImage}`} />
+      {/* {<img className="preview" src={`${myImage}`} />} */}
       {aiData &&
         aiData.products.map((aiData: any) => (
           <div key={props.location.state.id}>
