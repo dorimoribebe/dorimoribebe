@@ -23,7 +23,7 @@ export default class Share extends Component {
               <img src="images/external-link.png" alt="url" />
             </button>
           </CopyToClipboard>
-          {this.state.copied ? <span>url이 복사되었어요🚀</span> : null}
+          {this.state.copied ? <span className="share-btn">url이 복사되었어요🚀</span> : null}
         </>
     );
   }
