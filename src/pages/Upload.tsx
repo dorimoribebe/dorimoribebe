@@ -7,7 +7,8 @@ import Social from "../components/Social";
 const Upload = ({ match }: any) => {
   //https://54.67.69.32:443/
   //http://54.67.69.32:80/
-  const url: string = "http://2a3d-121-66-139-243.ngrok.io";
+  //http://3.39.145.19/
+  const url: string = "http://54.67.69.32:80/";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
   const [inputData, setInputData] = useState({
@@ -17,17 +18,19 @@ const Upload = ({ match }: any) => {
     style: "",
   });
   const { id, gender, age, style } = inputData;
-  const [aiData, setAiData] = useState([[""], [""]]);
+  const [aiData, setAiData] = useState({
+    data: [
+      {
+        id: "",
+        mood: "",
+      },
+    ],
+  });
 
   const [isShown, setIsShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
   const [resData, setResData] = useState(false);
-  //const aiData: string[] = [];
-
-  // const data = {
-  //   id: date,
-  // };
 
   // 사진 업로드, 사진 미리보기
   const onLoadFile = (e: any) => {
@@ -65,20 +68,26 @@ const Upload = ({ match }: any) => {
           setLoading(false); // 로딩중 false
           console.log("res", res);
           console.log("id", res.data.id);
-          setIsShow(true); // 폼데이터 양식 false, (결과이동페이지 true)
-          aiData[0] = res.data.id.toString;
-          aiData[1].push(res.data.mood["무드1-클래식"]);
-          aiData[1].push(res.data.mood["무드2-페미닌"]); //"무드2-페미닌"
-          aiData[1].push(res.data.mood["무드3-레트로"]); //"무드3-레트로"
-          aiData[1].push(res.data.mood["무드4-히피"]); //"무드4-히피"
-          aiData[1].push(res.data.mood["무드5-스포티"]); //"무드5-스포티"
-          aiData[1].push(res.data.mood["무드6-섹시"]); //"무드6-섹시"
-          aiData[1].push(res.data.mood["무드7-톰보이"]); //"무드7-톰보이"
+
+          // aiData[0] = res.data.id.toString;
+          // aiData[1].push(res.data.mood["무드1-클래식"]);
+          // aiData[1].push(res.data.mood["무드2-페미닌"]); //"무드2-페미닌"
+          // aiData[1].push(res.data.mood["무드3-레트로"]); //"무드3-레트로"
+          // aiData[1].push(res.data.mood["무드4-히피"]); //"무드4-히피"
+          // aiData[1].push(res.data.mood["무드5-스포티"]); //"무드5-스포티"
+          // aiData[1].push(res.data.mood["무드6-섹시"]); //"무드6-섹시"
+          // aiData[1].push(res.data.mood["무드7-톰보이"]); //"무드7-톰보이"
           setAiData({
-            ...aiData,
+            data: [
+              {
+                id: res.data.id,
+                mood: res.data.mood,
+              },
+            ],
           });
           //setAiData(aiData);
           console.log("aiData", aiData);
+          setIsShow(true); // 폼데이터 양식 false, (결과이동페이지 true)
           setResData(true); // 결과 true
         })
         .catch(function (error) {
@@ -139,8 +148,7 @@ const Upload = ({ match }: any) => {
         {/* {<p>
           {aiData[1][0]},{aiData[1][1]}
         </p>} */}
-        {aiData &&
-          aiData[0].map((aiData) => <p key={aiData[0]}>{aiData[1]}</p>)}
+        {aiData && aiData.data.map((aiData) => <p key={aiData.id}>{aiData.mood}</p>)}
         <Social />
         <div>
           <Link to="/" className="button text-link">
@@ -194,7 +202,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age0"
                     name="age"
-                    value="0"
+                    value="10대미만"
                     onChange={onInputChange}
                     required
                   />
@@ -205,7 +213,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age10"
                     name="age"
-                    value="10"
+                    value="10대"
                     onChange={onInputChange}
                   />
                   <span>10대</span>
@@ -215,7 +223,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age20"
                     name="age"
-                    value="20"
+                    value="20대"
                     onChange={onInputChange}
                   />
                   <span>20대</span>
@@ -225,7 +233,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age30"
                     name="age"
-                    value="30"
+                    value="30대"
                     onChange={onInputChange}
                   />
                   <span>30대</span>
@@ -235,7 +243,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age40"
                     name="age"
-                    value="40"
+                    value="40대"
                     onChange={onInputChange}
                   />
                   <span>40대</span>
@@ -245,7 +253,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age50"
                     name="age"
-                    value="50"
+                    value="50대"
                     onChange={onInputChange}
                   />
                   <span>50대</span>
@@ -255,7 +263,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="age60"
                     name="age"
-                    value="60"
+                    value="60대이상"
                     onChange={onInputChange}
                   />
                   <span>60대 이상</span>
