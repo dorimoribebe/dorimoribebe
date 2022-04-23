@@ -7,8 +7,7 @@ import Social from "../components/Social";
 const Upload = ({ match }: any) => {
   //https://54.67.69.32:443/
   //http://54.67.69.32:80/
-  //http://3.39.145.19/
-  const url: string = "http://54.67.69.32:80/";
+  const url: string = "https://54.67.69.32:443/";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
   const [inputData, setInputData] = useState({
@@ -18,14 +17,18 @@ const Upload = ({ match }: any) => {
     style: "",
   });
   const { id, gender, age, style } = inputData;
-  const [aiData, setAiData] = useState({
-    data: [
-      {
-        id: "",
-        mood: "",
-      },
-    ],
-  });
+  let [aiData, setAiData] = useState([
+    {
+      id: "",
+      mood1: "",
+      mood2: "",
+      mood3: "",
+      mood4: "",
+      mood5: "",
+      mood6: "",
+      mood7: "",
+    },
+  ]);
 
   const [isShown, setIsShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -67,26 +70,21 @@ const Upload = ({ match }: any) => {
         .then((res) => {
           setLoading(false); // 로딩중 false
           console.log("res", res);
-          console.log("id", res.data.id);
-
-          // aiData[0] = res.data.id.toString;
-          // aiData[1].push(res.data.mood["무드1-클래식"]);
-          // aiData[1].push(res.data.mood["무드2-페미닌"]); //"무드2-페미닌"
-          // aiData[1].push(res.data.mood["무드3-레트로"]); //"무드3-레트로"
-          // aiData[1].push(res.data.mood["무드4-히피"]); //"무드4-히피"
-          // aiData[1].push(res.data.mood["무드5-스포티"]); //"무드5-스포티"
-          // aiData[1].push(res.data.mood["무드6-섹시"]); //"무드6-섹시"
-          // aiData[1].push(res.data.mood["무드7-톰보이"]); //"무드7-톰보이"
-          setAiData({
-            data: [
-              {
-                id: res.data.id,
-                mood: res.data.mood,
-              },
-            ],
-          });
-          //setAiData(aiData);
-          console.log("aiData", aiData);
+          console.log(res.data.mood[0]["무드1-클래식"]);
+          aiData = [
+            {
+              id: res.data.id,
+              mood1: res.data.mood[0]["무드1-클래식"],
+              mood2: res.data.mood[0]["무드2-페미닌"],
+              mood3: res.data.mood[0]["무드3-레트로"],
+              mood4: res.data.mood[0]["무드4-히피"],
+              mood5: res.data.mood[0]["무드5-스포티"],
+              mood6: res.data.mood[0]["무드6-섹시"],
+              mood7: res.data.mood[0]["무드7-톰보이"],
+            },
+          ];
+          setAiData([...aiData]);
+          console.log("aiData", typeof aiData, aiData);
           setIsShow(true); // 폼데이터 양식 false, (결과이동페이지 true)
           setResData(true); // 결과 true
         })
@@ -145,10 +143,35 @@ const Upload = ({ match }: any) => {
         {imageSrc && (
           <img className="preview" src={imageSrc} alt="preview-img" />
         )}
-        {/* {<p>
-          {aiData[1][0]},{aiData[1][1]}
-        </p>} */}
-        {aiData && aiData.data.map((aiData) => <p key={aiData.id}>{aiData.mood}</p>)}
+        <div>
+          {aiData &&
+            aiData.map((item) => (
+              <div key={item.id}>
+                <p>
+                  {item.mood1[1]}, {item.mood1[0]}%
+                </p>
+                <p>
+                  {item.mood2[1]}, {item.mood2[0]}%
+                </p>
+                <p>
+                  {item.mood3[1]}, {item.mood3[0]}%
+                </p>
+                <p>
+                  {item.mood4[1]}, {item.mood4[0]}%
+                </p>
+                <p>
+                  {item.mood5[1]}, {item.mood5[0]}%
+                </p>
+                <p>
+                  {item.mood6[1]}, {item.mood6[0]}%
+                </p>
+                <p>
+                  {item.mood7[1]}, {item.mood7[0]}%
+                </p>
+              </div>
+            ))}
+        </div>
+
         <Social />
         <div>
           <Link to="/" className="button text-link">
@@ -292,28 +315,6 @@ const Upload = ({ match }: any) => {
         </div>
       </div>
       <div hidden={!isShown}>
-        {/* { <h1>결과 보러 가기🎈</h1>
-        <h3>
-          ai 하두알룩이 분석을 마쳤어요.
-          <br />
-          결과 페이지에서 데일리룩 분석을 확인해보러 가요!
-        </h3>
-        <Link
-          to={{
-            pathname: `/output/${aiData[0][0]}`,
-            state: [
-              {
-                id: aiData[0][0],
-                data: aiData[1],
-              },
-            ],
-          }}
-          className="text-link"
-        >
-          <h2>
-            <div className="button">Let's Go!🚀</div>
-          </h2>
-        </Link>}  */}
       </div>
     </>
   );
