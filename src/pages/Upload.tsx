@@ -7,7 +7,7 @@ import Social from "../components/Social";
 const Upload = ({ match }: any) => {
   //https://54.67.69.32:443/
   //http://54.67.69.32:80/
-  const url: string = "https://54.67.69.32:443/";
+  const url: string = "http://54.67.69.32:80/";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
   const [inputData, setInputData] = useState({
