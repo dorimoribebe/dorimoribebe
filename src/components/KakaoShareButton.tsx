@@ -9,7 +9,7 @@ const KakaoShareButton = () => {
     createKakaoButton();
   }, []);
 
-const url:string = window.location.href;
+  const url: string = "https://mood-ootd.netlify.app/";
 
   const createKakaoButton = () => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
@@ -51,10 +51,9 @@ const url:string = window.location.href;
     }
   };
   return (
-    
-      <button id="kakao-link-btn" className="share-btn">
-        <img src="images/kakao-talk.png" alt="kakao-share-icon" />
-      </button>
+    <button id="kakao-link-btn" className="share-btn">
+      <img src="images/kakao-talk.png" alt="kakao-share-icon" />
+    </button>
   );
 };
 export default KakaoShareButton;
