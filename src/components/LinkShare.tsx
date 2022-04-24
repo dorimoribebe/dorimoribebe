@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-
 export default class Share extends Component {
   state = {
     copyUrl: window.location.href,
@@ -17,14 +16,14 @@ export default class Share extends Component {
   };
   render() {
     return (
-        <>
-          <CopyToClipboard onCopy={this.onCopy} text={this.state.copyUrl}>
-            <button className="share-btn">
-              <img src="images/external-link.png" alt="url" />
-            </button>
-          </CopyToClipboard>
-          {this.state.copied ? <span className="share-btn">url이 복사되었어요🚀</span> : null}
-        </>
+      <>
+        <CopyToClipboard onCopy={this.onCopy} text={this.state.copyUrl}>
+          <button className="share-btn">
+            <img src="images/external-link.png" alt="url" />
+          </button>
+        </CopyToClipboard>
+        {this.state.copied ? <span>url이 복사되었어요🚀</span> : null}
+      </>
     );
   }
 }

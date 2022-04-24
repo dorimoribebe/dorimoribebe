@@ -119,6 +119,7 @@ body {
 }
 
 .share-btn + span {
+  position: absolute;
   background-color: #b7c6f2;
   border-radius: 5px;
   font-size: 12px;
