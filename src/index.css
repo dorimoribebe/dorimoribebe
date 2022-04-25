@@ -138,7 +138,10 @@ body {
 }
 
 .input input[type="radio"] {
-  display: none;
+  position: fixed;
+  
+  width: 1px;
+  height: 1px;
 }
 
 .input input[type="radio"] + span:hover {
@@ -147,7 +150,8 @@ body {
 
 .input input[type="radio"] + span {
   display: inline-block;
-  padding: 15px 10px;
+  width: 70px;
+  padding: 10px 5px 10px 5px;
   border: 1px solid #dfdfdf;
   background-color: #ffffff;
   text-align: center;

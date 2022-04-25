@@ -201,7 +201,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     name="gender"
                     id="female"
-                    value="female"
+                    value="여자"
                     onChange={onInputChange}
                     required
                   />
@@ -212,7 +212,7 @@ const Upload = ({ match }: any) => {
                     type="radio"
                     id="male"
                     name="gender"
-                    value="male"
+                    value="남자"
                     onChange={onInputChange}
                   />
                   <span>남성</span>
@@ -314,8 +314,7 @@ const Upload = ({ match }: any) => {
           </form>
         </div>
       </div>
-      <div hidden={!isShown}>
-      </div>
+      {/* <div hidden={!isShown}></div> */}
     </>
   );
 };
