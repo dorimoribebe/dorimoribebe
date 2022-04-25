@@ -27,6 +27,7 @@ const Upload = ({ match }: any) => {
       mood5: "",
       mood6: "",
       mood7: "",
+      mood8: "",
     },
   ]);
 
@@ -74,13 +75,14 @@ const Upload = ({ match }: any) => {
           aiData = [
             {
               id: res.data.id,
-              mood1: res.data.mood[0]["무드1-클래식"],
-              mood2: res.data.mood[0]["무드2-페미닌"],
-              mood3: res.data.mood[0]["무드3-레트로"],
-              mood4: res.data.mood[0]["무드4-히피"],
-              mood5: res.data.mood[0]["무드5-스포티"],
-              mood6: res.data.mood[0]["무드6-섹시"],
-              mood7: res.data.mood[0]["무드7-톰보이"],
+              mood1: res.data.mood[0]["무드1-직장인"],
+              mood2: res.data.mood[0]["무드2-캐주얼"],
+              mood3: res.data.mood[0]["무드3-리조트"],
+              mood4: res.data.mood[0]["무드4-데이트"],
+              mood5: res.data.mood[0]["무드5-패턴"],
+              mood6: res.data.mood[0]["무드6-스포티"],
+              mood7: res.data.mood[0]["무드7-섹시"],
+              mood8: res.data.mood[0]["무드8-캠퍼스"],
             },
           ];
           setAiData([...aiData]);
@@ -139,7 +141,7 @@ const Upload = ({ match }: any) => {
   if (resData) {
     return (
       <div>
-        <h1>🤖무드 분석 결과</h1>
+        <h1>🤖당신의 motd는 ..!</h1>
         {imageSrc && (
           <img className="preview" src={imageSrc} alt="preview-img" />
         )}
@@ -147,29 +149,26 @@ const Upload = ({ match }: any) => {
           {aiData &&
             aiData.map((item) => (
               <div key={item.id}>
-                <p>
-                  {item.mood1[1]}, {item.mood1[0]}%
-                </p>
-                <p>
-                  {item.mood2[1]}, {item.mood2[0]}%
-                </p>
-                <p>
-                  {item.mood3[1]}, {item.mood3[0]}%
-                </p>
-                <p>
-                  {item.mood4[1]}, {item.mood4[0]}%
-                </p>
-                <p>
-                  {item.mood5[1]}, {item.mood5[0]}%
-                </p>
-                <p>
-                  {item.mood6[1]}, {item.mood6[0]}%
-                </p>
-                <p>
-                  {item.mood7[1]}, {item.mood7[0]}%
-                </p>
+                {item.mood1[1]}, {item.mood1[0]}%
+                <br />
+                {item.mood2[1]}, {item.mood2[0]}%
+                <br />
+                {item.mood3[1]}, {item.mood3[0]}%
+                <br />
+                {item.mood4[1]}, {item.mood4[0]}%
+                <br />
+                {item.mood5[1]}, {item.mood5[0]}%
+                <br />
+                {item.mood6[1]}, {item.mood6[0]}%
+                <br />
+                {item.mood7[1]}, {item.mood7[0]}%
+                <br />
+                {item.mood8[1]}, {item.mood8[0]}%
               </div>
             ))}
+            <p>
+              #motd #mood #ootd #갬성 #데일리룩
+            </p>
         </div>
 
         <Social />
