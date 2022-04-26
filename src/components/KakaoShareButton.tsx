@@ -9,7 +9,7 @@ const KakaoShareButton = () => {
     createKakaoButton();
   }, []);
 
-  const url: string = "https://mood-ootd.netlify.app/";
+  const url: string = window.location.href;
 
   const createKakaoButton = () => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
@@ -25,7 +25,7 @@ const KakaoShareButton = () => {
         container: "#kakao-link-btn",
         objectType: "feed",
         content: {
-          title: "ai 하두알룩이 분석하는 데일리룩 무드",
+          title: "ai가 데일리룩을 분석해준다?",
           description: "#mood #ootd",
           imageUrl: url, // i.e. process.env.FETCH_URL + '/logo.png'
           link: {

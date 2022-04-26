@@ -71,7 +71,7 @@ const Upload = ({ match }: any) => {
         .then((res) => {
           setLoading(false); // 로딩중 false
           console.log("res", res);
-          console.log(res.data.mood[0]["무드1-클래식"]);
+          console.log(res.data.mood[0]["무드1-직장인"]);
           aiData = [
             {
               id: res.data.id,
