@@ -150,8 +150,8 @@ body {
 
 .input input[type="radio"] + span {
   display: inline-block;
-  width: 100px;
-  padding: 10px 5px 10px 5px;
+  width: 110px;
+  padding: 10px 3px 10px 3px;
   border: 1px solid #dfdfdf;
   background-color: #ffffff;
   text-align: center;
@@ -204,14 +204,14 @@ button {
 
 @media screen and (min-width: 960px) {
   .card {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     width: 720px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .card {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     width: 960px;
   }
 }
