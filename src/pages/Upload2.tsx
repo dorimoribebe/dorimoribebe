@@ -71,18 +71,18 @@ const Upload = ({ match }: any) => {
         .then((res) => {
           setLoading(false); // 로딩중 false
           console.log("res", res);
-          console.log(res.data.mood[0][0]); // 직장인
+          console.log(res.data.mood[0]["무드1-직장인"]);
           aiData = [
             {
               id: res.data.id,
-              mood1: res.data.mood[0][0],
-              mood2: res.data.mood[0][1],
-              mood3: res.data.mood[0][2],
-              mood4: res.data.mood[0][3],
-              mood5: res.data.mood[0][4],
-              mood6: res.data.mood[0][5],
-              mood7: res.data.mood[0][6],
-              mood8: res.data.mood[0][7],
+              mood1: res.data.mood[0]["무드1-직장인"],
+              mood2: res.data.mood[0]["무드2-캐주얼"],
+              mood3: res.data.mood[0]["무드3-리조트"],
+              mood4: res.data.mood[0]["무드4-데이트"],
+              mood5: res.data.mood[0]["무드5-패턴"],
+              mood6: res.data.mood[0]["무드6-스포티"],
+              mood7: res.data.mood[0]["무드7-섹시"],
+              mood8: res.data.mood[0]["무드8-캠퍼스"],
             },
           ];
           setAiData([...aiData]);
@@ -149,26 +149,26 @@ const Upload = ({ match }: any) => {
           {aiData &&
             aiData.map((item) => (
               <div key={item.id}>
-                <h3>{item.mood1[0]}무드!</h3>
+                {item.mood1[1]}, {item.mood1[0]}%
                 <br />
-                {item.mood1[1]}
+                {item.mood2[1]}, {item.mood2[0]}%
                 <br />
-                {item.mood2[0]} {item.mood2[2]}%
+                {item.mood3[1]}, {item.mood3[0]}%
                 <br />
-                {item.mood3[0]} {item.mood3[2]}%
+                {item.mood4[1]}, {item.mood4[0]}%
                 <br />
-                {item.mood4[0]} {item.mood4[2]}%
+                {item.mood5[1]}, {item.mood5[0]}%
                 <br />
-                {item.mood5[0]} {item.mood5[2]}%
+                {item.mood6[1]}, {item.mood6[0]}%
                 <br />
-                {item.mood6[0]} {item.mood6[2]}%
+                {item.mood7[1]}, {item.mood7[0]}%
                 <br />
-                {item.mood7[0]} {item.mood7[2]}%
-                <br />
-                {item.mood8[0]} {item.mood8[2]}%
+                {item.mood8[1]}, {item.mood8[0]}%
               </div>
             ))}
-          <p>#motd #mood #ootd #갬성 #데일리룩</p>
+            <p>
+              #motd #mood #ootd #갬성 #데일리룩
+            </p>
         </div>
 
         <Social />
