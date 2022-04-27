@@ -9,7 +9,7 @@ const KakaoShareButton = () => {
     createKakaoButton();
   }, []);
 
-  const url: string = window.location.href;
+  const url: string = "http://www.motd.r-e.kr/";
 
   const createKakaoButton = () => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다

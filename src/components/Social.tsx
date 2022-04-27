@@ -3,7 +3,7 @@ import KakaoShareButton from "../components/KakaoShareButton";
 import LinkShare from "../components/LinkShare";
 
 export default function Social() {
-  const url: string = window.location.href;
+  const url: string = "http://www.motd.r-e.kr/";
 
   useEffect(() => {
     const script = document.createElement("script");

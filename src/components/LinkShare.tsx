@@ -3,7 +3,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export default class Share extends Component {
   state = {
-    copyUrl: window.location.href,
+    copyUrl: "http://www.motd.r-e.kr/",
     copied: false,
   };
   closeCopied = () => {
