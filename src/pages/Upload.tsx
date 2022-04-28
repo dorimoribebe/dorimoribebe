@@ -204,8 +204,10 @@ const Upload = ({ match }: any) => {
                       </tr>
                     </tbody>
                   </table>
-                  {item.mood5[0]} {item.mood5[2]}%, {item.mood6[0]}{" "}
-                  {item.mood6[2]}%, {item.mood7[0]} {item.mood7[2]}%,{" "}
+                  <br />
+                  {item.mood5[0]} {item.mood5[2]}%,{" "}
+                  {item.mood6[0]} {item.mood6[2]}%,{" "}
+                  {item.mood7[0]} {item.mood7[2]}%,{" "}
                   {item.mood8[0]} {item.mood8[2]}%
                 </div>
               </div>
