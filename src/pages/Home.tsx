@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Social from "../components/Social";
 
 export default function Home() {
+  const FlaskUrl: string = "";
   return (
     <div className="home">
       <h2>How Do I Look?</h2>
@@ -24,6 +25,7 @@ export default function Home() {
           분석 요청하기🤖
         </Link>
       </div>
+      
     </div>
   );
 }

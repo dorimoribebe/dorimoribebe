@@ -3,6 +3,8 @@ import axios from "axios";
 import ReactLoading from "react-loading";
 import { Link } from "react-router-dom";
 import Social from "../components/Social";
+import styled, { ThemedStyledFunction } from "styled-components";
+
 
 const Upload = ({ match }: any) => {
   //https://54.67.69.32:443/
@@ -75,14 +77,14 @@ const Upload = ({ match }: any) => {
           aiData = [
             {
               id: res.data.id,
-              mood1: res.data.mood[0][0],
-              mood2: res.data.mood[0][1],
-              mood3: res.data.mood[0][2],
-              mood4: res.data.mood[0][3],
-              mood5: res.data.mood[0][4],
-              mood6: res.data.mood[0][5],
-              mood7: res.data.mood[0][6],
-              mood8: res.data.mood[0][7],
+              mood1: res.data.mood[0],
+              mood2: res.data.mood[1],
+              mood3: res.data.mood[2],
+              mood4: res.data.mood[3],
+              mood5: res.data.mood[4],
+              mood6: res.data.mood[5],
+              mood7: res.data.mood[6],
+              mood8: res.data.mood[7],
             },
           ];
           setAiData([...aiData]);
@@ -141,7 +143,7 @@ const Upload = ({ match }: any) => {
   if (resData) {
     return (
       <div>
-        <h1>🤖당신의 motd는 ..!</h1>
+        <h1>🤖분석 결과🤖</h1>
         {imageSrc && (
           <img className="preview" src={imageSrc} alt="preview-img" />
         )}
@@ -149,23 +151,63 @@ const Upload = ({ match }: any) => {
           {aiData &&
             aiData.map((item) => (
               <div key={item.id}>
-                <h3>{item.mood1[0]}무드!</h3>
-                <br />
+                <h3>당신의 motd는 .. {item.mood1[0]}무드!</h3>
                 {item.mood1[1]}
                 <br />
-                {item.mood2[0]} {item.mood2[2]}%
                 <br />
-                {item.mood3[0]} {item.mood3[2]}%
-                <br />
-                {item.mood4[0]} {item.mood4[2]}%
-                <br />
-                {item.mood5[0]} {item.mood5[2]}%
-                <br />
-                {item.mood6[0]} {item.mood6[2]}%
-                <br />
-                {item.mood7[0]} {item.mood7[2]}%
-                <br />
-                {item.mood8[0]} {item.mood8[2]}%
+                <div className="chart">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>{item.mood1[0]}</th>
+                        <td>
+                          <Chart>
+                            <InChart
+                              percent={parseInt(item.mood1[2])}
+                            ></InChart>
+                          </Chart>
+                        </td>
+                        <td>{item.mood1[2]}%</td>
+                      </tr>
+                      <tr>
+                        <th>{item.mood2[0]}</th>
+                        <td>
+                          <Chart>
+                            <InChart
+                              percent={parseInt(item.mood2[2])}
+                            ></InChart>
+                          </Chart>
+                        </td>
+                        <td>{item.mood2[2]}%</td>
+                      </tr>
+                      <tr>
+                        <th>{item.mood3[0]}</th>
+                        <td>
+                          <Chart>
+                            <InChart
+                              percent={parseInt(item.mood3[2])}
+                            ></InChart>
+                          </Chart>
+                        </td>
+                        <td>{item.mood3[2]}%</td>
+                      </tr>
+                      <tr>
+                        <th>{item.mood4[0]}</th>
+                        <td>
+                          <Chart>
+                            <InChart
+                              percent={parseInt(item.mood4[2])}
+                            ></InChart>
+                          </Chart>
+                        </td>
+                        <td>{item.mood4[2]}%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  {item.mood5[0]} {item.mood5[2]}%, {item.mood6[0]}{" "}
+                  {item.mood6[2]}%, {item.mood7[0]} {item.mood7[2]}%,{" "}
+                  {item.mood8[0]} {item.mood8[2]}%
+                </div>
               </div>
             ))}
           <p>#motd #mood #ootd #갬성 #데일리룩</p>
@@ -317,5 +359,23 @@ const Upload = ({ match }: any) => {
     </>
   );
 };
+
+interface IPercent {
+  percent: number;
+}
+
+const Chart = styled.div`
+  width: 150px;
+  height: 15px;
+  background: #f3edf0;
+  border-radius: 30px;
+`;
+
+const InChart = styled.div`
+  width: ${(props: IPercent) => props.percent * 1.5}px;
+  height: 15px;
+  background: #d9b8ff;
+  border-radius: 30px;
+`;
 
 export default Upload;
