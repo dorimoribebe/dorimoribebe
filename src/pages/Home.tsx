@@ -17,7 +17,6 @@ export default function Home() {
         src="https://cdn-icons-png.flaticon.com/512/6604/6604268.png"
         alt="ai HADOALOOK"
       />
-      <div>현재 -명이 참여했어요</div>
       <Social />
 
       <div>

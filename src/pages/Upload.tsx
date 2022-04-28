@@ -9,7 +9,7 @@ import styled, { ThemedStyledFunction } from "styled-components";
 const Upload = ({ match }: any) => {
   //https://54.67.69.32:443/
   //http://54.67.69.32:80/
-  const url: string = "http://54.67.69.32:80/";
+  const url: string = "http://13.125.145.101";
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
   const [inputData, setInputData] = useState({
